@@ -1,0 +1,7 @@
+dependencies:
+  - name: prometheus-operated-chart
+    version: 0.0.1
+    repository: http://localhost:8879
+  - name: stock
+    version: 1.0.0
+    repository: http://localhost:8878

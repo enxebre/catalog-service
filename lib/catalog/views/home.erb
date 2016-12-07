@@ -1,0 +1,6 @@
+<h3>T-Shirts:</h3>
+<ul>
+  <% @t_shirts.each do |t_shirt| %>
+    <li><a href="product/t-shirt/<%= t_shirt.name %>"><%= t_shirt.name %></a></li>
+  <% end %>
+</ul>

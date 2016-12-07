@@ -1,0 +1,90 @@
+{
+  "consumer": {
+    "name": "Catalog App"
+  },
+  "provider": {
+    "name": "Stock Service"
+  },
+  "interactions": [
+    {
+      "description": "a request for all the t-shirt",
+      "provider_state": "the t-shirt stock is not empty",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt",
+        "query": ""
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "name": "surfer-t-shirt"
+          },
+          {
+            "name": "formal-t-shirt"
+          }
+        ]
+      }
+    },
+    {
+      "description": "a request for a t-shirt",
+      "provider_state": "a t-shirt exists",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt/surfer-t-shirt",
+        "query": ""
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "surfer-t-shirt"
+        }
+      }
+    },
+    {
+      "description": "a request for a t-shirt",
+      "provider_state": "there is not a t-shirt with name surfer-t-shirt",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt/surfer-t-shirt",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+        }
+      }
+    },
+    {
+      "description": "a request for an t-shirt",
+      "provider_state": "an error occurs retrieving a t-shirt",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt/surfer-t-shirt",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 500,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "error": "Argh!!!"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "1.0.0"
+  }
+}

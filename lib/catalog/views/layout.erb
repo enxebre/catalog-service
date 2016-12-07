@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Catalog App</title>
+    <link href="/main.css" rel="stylesheet" type="text/css"></link>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <h1>
+            <a href="/">Catalog App</a>
+            </h1>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Catalog Service</h2>
+        <p>The Catalog service is a frontend that communicates with the stock service in order to retrieve the available products.</p>
+        <%= yield %>
+      </div>
+      <div class="footer">
+        <p class="legal">&mdash; &copy; <%= Time.now.strftime("%Y") %> &mdash;</p>
+      </div>
+    </div>
+  </body>
+</html>

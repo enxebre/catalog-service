@@ -1,0 +1,9 @@
+dependencies:
+- name: prometheus-operated-chart
+  repository: http://localhost:8879
+  version: 0.0.1
+- name: stock
+  repository: http://localhost:8878
+  version: 0.1.0
+digest: sha256:a9715f20e8c9eec0a9129ea542bd79120b5cad12085bd93d108664b9f3972339
+generated: 2016-12-07T12:22:40.418485525+01:00

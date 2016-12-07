@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "{{ printf "%s-%s" .Release.Name .Values.Name | trunc 24 }}"
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    component: "{{.Release.Name}}-{{.Values.Component}}"
+  annotations:
+    "helm.sh/created": {{.Release.Time.Seconds | quote }}
+spec:
+  replicas: {{ default 1 .Values.Replicas }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      component: "{{.Release.Name}}-{{.Values.Component}}"
+  template:
+    metadata:
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        component: "{{.Release.Name}}-{{.Values.Component}}"
+    spec:
+      containers:
+        - name: "{{ printf "%s-%s" .Release.Name .Values.Name | trunc 24 }}"
+          image: "{{.Values.Image}}:{{.Values.ImageTag}}"
+          imagePullPolicy: "{{.Values.ImagePullPolicy}}"
+          ports:
+            - name: web
+              containerPort: {{.Values.ContainerPort}}
+          resources:
+            requests:
+              cpu: "{{.Values.Cpu}}"
+              memory: "{{.Values.Memory}}"
+          env:
+          - name: VERSION
+            value: {{.Values.ImageTag | quote }}

@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ printf "%s-%s" .Release.Name .Values.Name | trunc 24 }}"
+spec:
+  rules:
+  - host: "{{ .Values.Name | trunc 24 }}.{{.Values.IngressDomain}}"
+    http:
+      paths:
+      - backend:
+          serviceName: "{{ .Values.Name | trunc 24 }}"
+          servicePort: {{.Values.ServicePort}}

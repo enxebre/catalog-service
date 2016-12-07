@@ -1,0 +1,6 @@
+charts/catalog/charts/
+vendor/
+.bundle
+log/
+cache/
+builds/
