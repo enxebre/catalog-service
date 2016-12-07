@@ -5,7 +5,7 @@ ContainerPort: 9292
 Component: "catalog"
 Replicas: 3
 Image: "enxebre/catalog"
-ImageTag: "v1"
+ImageTag: "v2"
 IngressDomain: "test"
 ImagePullPolicy: "Always"
 Cpu: "9m"
@@ -20,6 +20,9 @@ prometheus-operated-chart:
       test.rules: |
         ALERT httpRequestsSuspicious
         IF http_requests_suspicious > 2
+
+        ALERT remoteCallSlow
+        IF remote_calls_summary>1
 
   alertmanager:
     alertmanagerFiles:
@@ -36,5 +39,5 @@ prometheus-operated-chart:
         - name: default-receiver
           slack_configs:
           - api_url: 'https://hooks.slack.com/services/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'
-            channel: '#alertv1'
+            channel: '#alertv2'
             send_resolved: true
